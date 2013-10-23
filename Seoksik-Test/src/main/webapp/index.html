@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<link rel="stylesheet" href="./css/jquery.mobile-1.3.2.css" />
+<script src="./js/jquery-2.0.3.min.js"></script>
+<script src="./js/jquery.mobile-1.3.2.min.js"></script>
+
+<script type="text/javascript">
+function getAccessToken() {
+	 //alert(JSON.stringify($('#form').serialize()));
+    $.ajax({
+        url: "https://accounts.google.com/o/oauth2/token",
+        type: "post",
+        dataType: "jsonp",
+        //dataType: "text",
+        processdata: true,
+        data: "code=4/YJrLKjjPoEeaMbdzpxtODtzd935j.woR07PTKXlcXXE-sT2ZLcbSf-1RrgwI&redirect_uri=urn:ietf:wg:oauth:2.0:oob&client_id=684269025988-atitr2404s4jcuc8kofiqhoalm4hmd3m.apps.googleusercontent.com&scope=&client_secret=xb-dvxZAsA_RiT2tOajPSJoq&grant_type=authorization_code",
+        //contentType: "application/json; charset=utf-8",
+        contentType: "application/x-www-form-urlencoded",
+        beforeSend: function(xhr) {
+        	xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        	xhr.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+        	xhr.setRequestHeader("Access-Control-Allow-Headers", "orgin, x-requested-with");
+        	alert("beforeSend");
+        },
+        success: function (msg) {
+            alert("success");
+        },
+        error: function (xhr, status, error) {
+        	alert("fail");
+            alert(xhr.responseText);
+        }
+    });
+}
+</script>
+</head>
+<body>
+
+<div data-role="header" data-theme="b">
+    <h1>Page Title</h1>
+</div>
+
+<div data-role="content" data-theme="b">
+    
+	<a href="https://accounts.google.com/o/oauth2/auth?client_id=684269025988-atitr2404s4jcuc8kofiqhoalm4hmd3m.apps.googleusercontent.com&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code&scope=https://spreadsheets.google.com/feeds/+https://www.google.com/m8/feeds/" data-role="button" target="_blank">Google SIGN UP</a>
+	
+	<table width="100%">
+		<tr>
+			<td colspan="2"><label for="text-3">Input your authorization code : </label></td>
+		</tr>
+		<td>
+    		<td><input type="text" data-clear-btn="true" name="authcode" id="authcode" value=""></td>
+    		<td><a href="javascript:getAccessToken();" data-role="button" target="_blank">get access token</a></td>
+    	</tr>
+	</table>
+</div>
+
+<div data-role="footer" data-theme="b">
+<h3>Copyright.......ha1</h3>
+</div>
+
+</body>
+</html>
